@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {{data}}
+    <p id="demo"></p>
+
+<script>
+
+    function printAllVals(o) {
+        var s = '';
+        for (let a in o) {
+            if (typeof o[a] === "object") {
+                s='<label>'+printAllVals(o[a])+'</label>'+'<br />'+s;
+            } else {
+              s='<label>'+a+o[a]+'</label>'+'<br />'+s;
+            }
+        }
+        console.log("*************"+s);
+      return s;
+    }
+
+    var data = JSON.parse('{{ data | tojson | safe}}');
+    var html = printAllVals(data,0);
+    document.getElementById("demo").innerHTML = html;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Sign In | Bootstrap Based Admin Template - Material Design</title>
+    <!-- Favicon-->
+    <link rel="icon" href="../../../static/favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="../../../static/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="../../../static/plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="../../../static/plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Sweetalert Css -->
+    <link href="../../../static/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="../../../static/css/style.css" rel="stylesheet">
+</head>
+
+<body class="login-page">
+    <div class="login-box">
+        <div class="logo"><a href="javascript:void(0);">Social<b>Media</b></a>
+            <small>Version 1.0</small>
+        </div>
+        <div class="card">
+            <div class="body">
+
+                <form id="sign_in" method="POST" action="{{ url_for('login') }}">
+                    <div class="msg">Sign in to start your session</div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="username" placeholder="Username" required autofocus>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="password" class="form-control" name="password" placeholder="Password" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8 p-t-5">
+                            <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
+                            <label for="rememberme">Remember Me</label>
+                        </div>
+                        <div class="col-xs-4">
+                            <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
+                        </div>
+                    </div>
+
+                </form>
+                <div class="row m-t-15 m-b--20">
+                        <div class="col-xs-6">
+                            <a href="/register">Register Now!</a>
+                        </div>
+                        <div class="col-xs-6 align-right">
+                            <a>Forgot Password?</a>
+<!--                            <button class="btn btn-primary waves-effect" data-type="with-custom-icon">Forgot Password</button>-->
+                        </div>
+                    </div>
+                <div>
+                    {% for message in get_flashed_messages() %}
+                    <div class="msg">
+                        <p class="font-bold col-red">{{message}}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery Core Js -->
+    <script src="../../../static/plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="../../../static/plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="../../../static/plugins/node-waves/waves.js"></script>
+
+    <!-- Validation Plugin Js -->
+    <script src="../../../static/plugins/jquery-validation/jquery.validate.js"></script>
+
+    <!-- SweetAlert Plugin Js -->
+    <script src="../../../static/plugins/sweetalert/sweetalert.min.js"></script>
+
+    <!-- Custom Js -->
+    <script src="../../../static/js/admin.js"></script>
+    <script src="../../../static/js/pages/examples/sign-in.js"></script>
+    <script src="../../../static/js/pages/ui/dialogs.js"></script>
+
+    <div class="sweet-alert hideSweetAlert" data-custom-class="" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-outside-click="false" data-has-done-function="false" data-animation="pop" data-timer="null" style="display: none; margin-top: -144px; opacity: -0.2;"><div class="sa-icon sa-error" style="display: none;">
+      <span class="sa-x-mark">
+        <span class="sa-line sa-left"></span>
+        <span class="sa-line sa-right"></span>
+      </span>
+    </div>
+        <div class="sa-icon sa-warning" style="display: none;">
+          <span class="sa-body"></span>
+          <span class="sa-dot"></span>
+        </div>
+        <div class="sa-icon sa-info" style="display: none;"></div><div class="sa-icon sa-success" style="display: none;">
+          <span class="sa-line sa-tip"></span>
+          <span class="sa-line sa-long"></span>
+          <div class="sa-placeholder"></div>
+          <div class="sa-fix"></div>
+        </div>
+        <div class="sa-icon sa-custom" style="display: block; background-image: url(&quot;../../images/thumbs-up.png&quot;); width: 80px; height: 80px;width:80px; height:80px"></div><h2>Sweet!</h2>
+        <p style="display: block;">Here's a custom image.</p>
+        <fieldset>
+          <input type="text" tabindex="3" placeholder="">
+          <div class="sa-input-error"></div>
+        </fieldset>
+        <div class="sa-error-container">
+          <div class="icon">!</div>
+          <p>Not valid!</p>
+        </div>
+        <div class="sa-button-container">
+      <button class="cancel" tabindex="2" style="display: none; box-shadow: none;">Cancel</button>
+      <div class="sa-confirm-button-container">
+        <button class="confirm" tabindex="1" style="display: inline-block; background-color: rgb(140, 212, 245); box-shadow: rgba(140, 212, 245, 0.8) 0px 0px 2px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px inset;">OK</button><div class="la-ball-fall">
+          <div></div>
+          <div></div>
+          <div></div>
+      </div>
+    </div>
+    </div>
+    </div>
+</body>
+
+</html>

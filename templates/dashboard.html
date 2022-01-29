@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Dashboard</title>
+    <!-- Favicon-->
+    <link rel="icon" href="../../../static/favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="../../../static/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="../../../static/plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="../../../static/plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Colorpicker Css -->
+    <link href="../../../static/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
+
+    <!-- Dropzone Css -->
+    <link href="../../../static/plugins/dropzone/dropzone.css" rel="stylesheet">
+
+    <!-- Multi Select Css -->
+    <link href="../../../static/plugins/multi-select/css/multi-select.css" rel="stylesheet">
+
+    <!-- Bootstrap Spinner Css -->
+    <link href="../../../static/plugins/jquery-spinner/css/bootstrap-spinner.css" rel="stylesheet">
+
+    <!-- Bootstrap Tagsinput Css -->
+    <link href="../../../static/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
+
+    <!-- Bootstrap Select Css -->
+    <link href="../../../static/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+    <!-- noUISlider Css -->
+    <link href="../../../static/plugins/nouislider/nouislider.min.css" rel="stylesheet" />
+
+    <!-- JQuery Nestable Css -->
+    <link href="../../../static/plugins/nestable/jquery-nestable.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="../../../static/css/style.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="../../../static/css/themes/all-themes.css" rel="stylesheet" />
+
+    <style>
+<!--        .dd{-->
+<!--            background-color:black;-->
+<!--        }-->
+    </style>
+</head>
+
+<body class="theme-red">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING...">
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="../../../static/index.html">Discussion Forum</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Notifications -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="material-icons">notifications</i>
+                            <span class="label-count">7</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">NOTIFICATIONS</li>
+                            <li class="body">
+                                <ul class="menu">
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-light-green">
+                                                <i class="material-icons">person_add</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4>Notif 1</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> 14 mins ago
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-cyan">
+                                                <i class="material-icons">add_shopping_cart</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4>Notif 2</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> 22 mins ago
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-red">
+                                                <i class="material-icons">delete_forever</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4><b>User 1:</b> Norif 3</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> 3 hours ago
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="javascript:void(0);">View All Notifications</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- #END# Notifications -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="image">
+                    <img src="../../../static/images/user.png" width="48" height="48" alt="User" />
+                </div>
+                <div class="info-container">
+                    <div class="name" data-toggle="dropdown" aap="true" aria-expanded="false">{{username}}</div>
+                    <div class="email">{{name}}</div>
+                </div>
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li class="header">MAIN NAVIGATION</li>
+                    <li>
+                        <a href="../../../static/index.html">
+                            <i class="material-icons">dashboard</i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../../../static/index.html">
+                            <i class="material-icons">whatshot</i>
+                            <span>Trending</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../../../static/index.html">
+                            <i class="material-icons">person</i>
+                            <span>My Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../../../static/index.html">
+                            <i class="material-icons">card_membership</i>
+                            <span>About Us</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../../../static/index.html">
+                            <i class="material-icons">help</i>
+                            <span>Help</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../../../static/index.html">
+                            <i class="material-icons">exit_to_app</i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- #Menu -->
+            <!-- Footer -->
+            <div class="legal">
+                <div class="copyright">
+                    &copy; 2021 - 2022 <a href="javascript:void(0);">Discussion Forum</a>.
+                </div>
+                <div class="version">
+                    <b>Version: </b> 1.0
+                </div>
+            </div>
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+        <!-- Right Sidebar -->
+        <aside id="rightsidebar" class="right-sidebar">
+            <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                <li role="presentation" class="active"><a href="#skins" data-toggle="tab">SKINS</a></li>
+                <li role="presentation"><a href="#settings" data-toggle="tab">SETTINGS</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active in active" id="skins">
+                    <ul class="demo-choose-skin">
+                        <li data-theme="red" class="active">
+                            <div class="red"></div>
+                            <span>Red</span>
+                        </li>
+                        <li data-theme="pink">
+                            <div class="pink"></div>
+                            <span>Pink</span>
+                        </li>
+                        <li data-theme="purple">
+                            <div class="purple"></div>
+                            <span>Purple</span>
+                        </li>
+                        <li data-theme="deep-purple">
+                            <div class="deep-purple"></div>
+                            <span>Deep Purple</span>
+                        </li>
+                        <li data-theme="indigo">
+                            <div class="indigo"></div>
+                            <span>Indigo</span>
+                        </li>
+                        <li data-theme="blue">
+                            <div class="blue"></div>
+                            <span>Blue</span>
+                        </li>
+                        <li data-theme="light-blue">
+                            <div class="light-blue"></div>
+                            <span>Light Blue</span>
+                        </li>
+                        <li data-theme="cyan">
+                            <div class="cyan"></div>
+                            <span>Cyan</span>
+                        </li>
+                        <li data-theme="teal">
+                            <div class="teal"></div>
+                            <span>Teal</span>
+                        </li>
+                        <li data-theme="green">
+                            <div class="green"></div>
+                            <span>Green</span>
+                        </li>
+                        <li data-theme="light-green">
+                            <div class="light-green"></div>
+                            <span>Light Green</span>
+                        </li>
+                        <li data-theme="lime">
+                            <div class="lime"></div>
+                            <span>Lime</span>
+                        </li>
+                        <li data-theme="yellow">
+                            <div class="yellow"></div>
+                            <span>Yellow</span>
+                        </li>
+                        <li data-theme="amber">
+                            <div class="amber"></div>
+                            <span>Amber</span>
+                        </li>
+                        <li data-theme="orange">
+                            <div class="orange"></div>
+                            <span>Orange</span>
+                        </li>
+                        <li data-theme="deep-orange">
+                            <div class="deep-orange"></div>
+                            <span>Deep Orange</span>
+                        </li>
+                        <li data-theme="brown">
+                            <div class="brown"></div>
+                            <span>Brown</span>
+                        </li>
+                        <li data-theme="grey">
+                            <div class="grey"></div>
+                            <span>Grey</span>
+                        </li>
+                        <li data-theme="blue-grey">
+                            <div class="blue-grey"></div>
+                            <span>Blue Grey</span>
+                        </li>
+                        <li data-theme="black">
+                            <div class="black"></div>
+                            <span>Black</span>
+                        </li>
+                    </ul>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="settings">
+                    <div class="demo-settings">
+                        <p>GENERAL SETTINGS</p>
+                        <ul class="setting-list">
+                            <li>
+                                <span>Report Panel Usage</span>
+                                <div class="switch">
+                                    <label><input type="checkbox" checked><span class="lever"></span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <span>Email Redirect</span>
+                                <div class="switch">
+                                    <label><input type="checkbox"><span class="lever"></span></label>
+                                </div>
+                            </li>
+                        </ul>
+                        <p>SYSTEM SETTINGS</p>
+                        <ul class="setting-list">
+                            <li>
+                                <span>Notifications</span>
+                                <div class="switch">
+                                    <label><input type="checkbox" checked><span class="lever"></span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <span>Auto Updates</span>
+                                <div class="switch">
+                                    <label><input type="checkbox" checked><span class="lever"></span></label>
+                                </div>
+                            </li>
+                        </ul>
+                        <p>ACCOUNT SETTINGS</p>
+                        <ul class="setting-list">
+                            <li>
+                                <span>Offline</span>
+                                <div class="switch">
+                                    <label><input type="checkbox"><span class="lever"></span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <span>Location Permission</span>
+                                <div class="switch">
+                                    <label><input type="checkbox" checked><span class="lever"></span></label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!-- #END# Right Sidebar -->
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-3">
+                    <div class="card profile-card">
+                        <div class="profile-header">&nbsp;</div>
+                        <div class="profile-body">
+                            <div class="image-area">
+                                <img src="../../../static/images/user-lg.jpg" alt="AdminBSB - Profile Image" />
+                            </div>
+                            <div class="content-area">
+                                <h3>Marc K. Hammond</h3>
+                                <p>Web Software Developer</p>
+                                <p>Administrator</p>
+                            </div>
+                        </div>
+                        <div class="profile-footer">
+                            <ul>
+                                <li>
+                                    <span>Followers</span>
+                                    <span>1.234</span>
+                                </li>
+                                <li>
+                                    <span>Following</span>
+                                    <span>1.201</span>
+                                </li>
+                                <li>
+                                    <span>Friends</span>
+                                    <span>14.252</span>
+                                </li>
+                            </ul>
+                            <button class="btn btn-primary btn-lg waves-effect btn-block">FOLLOW</button>
+                        </div>
+                    </div>
+
+                    <div class="card card-about-me">
+                        <div class="header">
+                            <h2>ABOUT ME</h2>
+                        </div>
+                        <div class="body">
+                            <ul>
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">library_books</i>
+                                        Education
+                                    </div>
+                                    <div class="content">
+                                        B.S. in Computer Science from the University of Tennessee at Knoxville
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">location_on</i>
+                                        Location
+                                    </div>
+                                    <div class="content">
+                                        Malibu, California
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">edit</i>
+                                        Skills
+                                    </div>
+                                    <div class="content">
+                                        <span class="label bg-red">UI Design</span>
+                                        <span class="label bg-teal">JavaScript</span>
+                                        <span class="label bg-blue">PHP</span>
+                                        <span class="label bg-amber">Node.js</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">notes</i>
+                                        Description
+                                    </div>
+                                    <div class="content">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-9">
+                    <div class="card">
+                        <div class="body">
+                            <div>
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+                                    <li role="presentation"><a href="#profile_settings" aria-controls="settings" role="tab" data-toggle="tab">Profile Settings</a></li>
+                                    <li role="presentation"><a href="#change_password_settings" aria-controls="settings" role="tab" data-toggle="tab">Change Password</a></li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                        {% for post in posts %}
+                                            <div class="panel panel-default panel-post">
+                                            <div class="panel-heading">
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <a href="#">
+                                                            <img src="../../../static/images/user-lg.jpg" />
+                                                        </a>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading">
+                                                            <a href="#">{{post.username}}</a>
+                                                        </h4>
+                                                        Shared publicly - 26 Oct 2018
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="post">
+                                                    <div class="post-heading">
+                                                        <p>{{post.description}}</p>
+                                                    </div>
+                                                    <div class="post-content">
+                                                        <img src={{upload_folder+post.image}} class="img-responsive" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel-footer">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="material-icons">thumb_up</i>
+                                                            <span>12 Likes</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="material-icons">comment</i>
+                                                            <span>5 Comments</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="material-icons">share</i>
+                                                            <span>Share</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <div class="clearfix m-b-20">
+
+                                                    <div class="dd" id="demo">
+
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    {{data}}
+                                                    <script>
+                                                        function printAllVals(o) {
+                                                            var s = '</ol>';
+                                                            for (let a in o) {
+                                                                if (typeof o[a] === "object") {
+                                                                    s='<li class="dd-item"><button data-action="collapse" type="button" style="display: block;">Collapse</button><button data-action="expand" type="button" style="display: none;">Expand</button><div class="dd-handle"></div>'+printAllVals(o[a])+'</li>'+s;
+                                                                } else {
+                                                                  s='<li class="dd-item"><div class="dd-handle">'+a+o[a]+'</div></li>'+s;
+                                                                }
+                                                            }
+                                                            console.log("*************"+s);
+                                                            s='<ol class="dd-list" style="">'+s;
+                                                          return s;
+                                                        }
+                                                        var data = JSON.parse('{{ data | tojson | safe}}');
+                                                        console.log(data);
+                                                        var html = printAllVals(data,0);
+                                                        console.log(html);
+                                                        document.getElementById("demo").innerHTML = html;
+                                                    </script>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade in" id="profile_settings">
+                                        <form class="form-horizontal" action="/dashboard" method="post" enctype="multipart/form-data">
+                                            <!-- Normal Fields -->
+                                            <div class="form-group">
+                                                <label for="title" class="col-sm-2 control-label">Title</label>
+                                                <div class="col-sm-10">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" id="title" name="title" placeholder="hear! hear!" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="description" class="col-sm-2 control-label">Description</label>
+                                                <div class="col-sm-10">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" id="description" name="description" placeholder="Once upon a time..." required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Image -->
+                                            <div class="form-group">
+                                                <label for="image" class="col-sm-2 control-label">Image</label>
+
+                                                <div class="col-sm-10">
+                                                    <div class="form-line">
+                                                        <input type="file" id="image" name="image">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Checkbox -->
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-2 col-sm-10">
+                                                    <input type="checkbox" id="terms_condition_check" class="chk-col-red filled-in" />
+                                                    <label for="terms_condition_check">I agree to the <a href="#">terms and conditions</a></label>
+                                                </div>
+                                            </div>
+                                            <!-- Submit Button -->
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-2 col-sm-10">
+                                                    <button type="submit" class="btn btn-danger">SUBMIT</button>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade in" id="change_password_settings">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="OldPassword" class="col-sm-3 control-label">Old Password</label>
+                                                <div class="col-sm-9">
+                                                    <div class="form-line">
+                                                        <input type="password" class="form-control" id="OldPassword" name="OldPassword" placeholder="Old Password" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="NewPassword" class="col-sm-3 control-label">New Password</label>
+                                                <div class="col-sm-9">
+                                                    <div class="form-line">
+                                                        <input type="password" class="form-control" id="NewPassword" name="NewPassword" placeholder="New Password" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="NewPasswordConfirm" class="col-sm-3 control-label">New Password (Confirm)</label>
+                                                <div class="col-sm-9">
+                                                    <div class="form-line">
+                                                        <input type="password" class="form-control" id="NewPasswordConfirm" name="NewPasswordConfirm" placeholder="New Password (Confirm)" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-3 col-sm-9">
+                                                    <button type="submit" class="btn btn-danger">SUBMIT</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Jquery Core Js -->
+    <script src="../../../static/plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="../../../static/plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="../../../static/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="../../../static/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="../../../static/plugins/node-waves/waves.js"></script>
+
+    <!-- Jquery Nestable -->
+    <script src="../../../static/plugins/nestable/jquery.nestable.js"></script>
+
+    <!-- Custom Js -->
+    <script src="../../../static/js/admin.js"></script>
+    <script src="../../../static/js/pages/examples/profile.js"></script>
+    <script src="../../../static/js/pages/ui/sortable-nestable.js"></script>
+
+    <!-- Demo Js -->
+    <script src="../../../static/js/demo.js"></script>
+</body>
+
+</html>
