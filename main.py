@@ -121,6 +121,38 @@ def find_tags(description):
     description = description.replace(",", " ").replace(".", " ").replace("'", " ").replace("\"", " ").replace("!", " ").replace("?", " ").replace("-", " ")
     return {tag.strip("#") for tag in description.split() if tag.startswith("#")}
 
+# @app.route("/trie/<post_id>", methods=['POST', 'GET'])
+def get_trie(post_id):
+    print("Post:", post_id)
+    comments = mongo.db.comments
+    posts = mongo.db.posts
+    post_comments = comments.find({"post_id":post_id})
+    print(post_comments)
+    content = {}
+    def get_child_trie(curr_doc):
+        print("Started Function:",curr_doc)
+        L = []
+        print(curr_doc)
+        content[curr_doc["id"]] = "Comment Content: "+str(curr_doc["text"])
+        if "children" == []:
+            return []
+        for child_id in curr_doc["children"]:
+            child_doc = comments.find_one({'id':child_id})
+            print(child_doc)
+            L.append({"id": child_doc["id"], "children": [elem for elem in get_child_trie(child_doc)]})
+        print(L,"***********8")
+
+        return [x for x in L]
+
+        # return {post_id:L}
+    L = []
+    for comment in post_comments:
+        print(comment)
+        L.append({"id":comment["id"], "children":[elem for elem in get_child_trie(comment)]})
+    print({post_id: L})
+    return content, L
+
+
 @app.route('/dashboard', methods=['POST', 'GET'])
 def dashboard():
     if 'username' not in session:
@@ -177,17 +209,24 @@ def dashboard():
             if tag_doc:
                 posts_list = tag_doc["posts"]
                 posts_list.append(post_id)
-                tags.update({'name': hashtag}, {"$set": {"posts": posts_list}})
+                tags.update_one({'name': hashtag}, {"$set": {"posts": posts_list}})
             else:
                 tags.insert_one({'name': hashtag, "posts": [post_id]})
         return redirect("/dashboard")
 
     posts = mongo.db.posts
-    my_posts = posts.find({'username': username}).sort("votes")
+    my_posts = posts.find({})
     all_posts = posts.find({})
-    object = {"post_id": 1, "comments": [{"id": 1, "children": [{"id": 2, "children": [5]}, {"id": 3}, {"id": 4}]}]}
-    data = json.dumps(object)
-    return render_template("dashboard.html", data = object, posts = my_posts, upload_folder = "../../../"+app.config['UPLOAD_FOLDER']+"/")
+    contents = {}
+    object2 = {}
+    for post in all_posts:
+        # pass
+        print(get_trie(post['post_id']), "&&&&&&&&&&&&7")
+        contents[post['post_id']], object2[post['post_id']] = get_trie(post['post_id'])
+    print(contents, object2 , ":::::::::::::::::::")
+    object = object2 #{'Eshita_1.0': [{'id': 'Eshita_0', 'children': []}, {'id': 'Eshita_1', 'children': [{'id': 'Eshita_2', 'children': []}, {'id': 'Eshita_4', 'children': []}, {'id': 'Eshita_5', 'children': []}, {'id': 'Eshita_6', 'children': []}, {'id': 'Eshita_7', 'children': []}, {'id': 'Eshita_8', 'children': []}, {'id': 'Eshita_9', 'children': []}, {'id': 'Eshita_10', 'children': []}, {'id': 'Eshita_11', 'children': []}]}, {'id': 'Eshita_3', 'children': []}]}
+    return render_template("dashboard.html", username = username, contents = contents, data = object, posts = my_posts, upload_folder = "../../../"+app.config['UPLOAD_FOLDER']+"/")
+
 
 @app.route('/view_comments', methods = ['POST', 'GET'])
 def view_comments():
@@ -195,6 +234,43 @@ def view_comments():
     data = json.dumps(object)
     print(type(data))
     return render_template('blank_page.html', data = object)
+
+
+@app.route('/add_comment/<post_id>/<parent_comment_id>',methods = ['POST', 'GET'])
+def add_comment(post_id,parent_comment_id):
+    username = session['username']
+    comments = mongo.db.comments
+
+    current_comment_id = session['username']+"_"+str(comments.count_documents({}))
+    print(parent_comment_id, "**********88")
+    if parent_comment_id=="None":
+        text = request.form.get("text")
+        comments.insert_one({"id": current_comment_id,
+                             "text": text,
+                             "children": [],
+                             "post_id":post_id})
+        print("Done Adding", {"id": current_comment_id,
+                             "text": text,
+                             "children": [],
+                             "post_id":post_id})
+        return redirect('/dashboard')
+    print("textInput" + parent_comment_id, request.form.get("textInput" + parent_comment_id + ".show"))
+    text = request.form.get("textInput" + parent_comment_id)
+    comments.insert_one({"id":current_comment_id,
+                         "text":text,
+                         "children":[]})
+    parent_children = comments.find_one({'id':parent_comment_id})['children']
+    parent_children.append(current_comment_id)
+    comments.update_one({'id':parent_comment_id}, {'$set': {'children':parent_children}})
+    print("Done Adding", {"id": current_comment_id,
+                         "text": text,
+                         "children": []})
+    return redirect('/dashboard')
+
+
+
+
+
 
 if __name__ == '__main__':
     # data = pandas.read_csv('Apparel_Dummy_Database.csv').values.tolist()

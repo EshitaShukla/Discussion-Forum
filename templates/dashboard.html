@@ -52,9 +52,12 @@
     <link href="../../../static/css/themes/all-themes.css" rel="stylesheet" />
 
     <style>
-<!--        .dd{-->
-<!--            background-color:black;-->
-<!--        }-->
+    .hide{
+      display:none;
+    }
+    .show{
+      display:block;
+    }
     </style>
 </head>
 
@@ -466,13 +469,14 @@
                             <div>
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-                                    <li role="presentation"><a href="#profile_settings" aria-controls="settings" role="tab" data-toggle="tab">Profile Settings</a></li>
+                                    <li role="presentation"><a href="#add_post" aria-controls="settings" role="tab" data-toggle="tab">Add Post</a></li>
                                     <li role="presentation"><a href="#change_password_settings" aria-controls="settings" role="tab" data-toggle="tab">Change Password</a></li>
                                 </ul>
 
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane fade in active" id="home">
                                         {% for post in posts %}
+
                                             <div class="panel panel-default panel-post">
                                             <div class="panel-heading">
                                                 <div class="media">
@@ -521,32 +525,61 @@
                                                     </li>
                                                 </ul>
                                                 <div class="clearfix m-b-20">
+                                                    <form action="/add_comment/Eshita_1.0/None" method="post">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="material-icons">comment</i>
+                                                            </span>
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="text" placeholder="text" required autofocus>
 
-                                                    <div class="dd" id="demo">
+                                                            </div>
+                                                            <span class="input-group-addon">
+                                                                <button class="btn btn-block bg-pink waves-effect" type="submit">Submit</button>
+                                                            </span>
+                                                        </div>
+                                                    </form>
+                                                    <div class="dd" id="comments_{{post.post_id}}">
 
                                                     </div>
                                                 </div>
                                                 <div>
                                                     {{data}}
                                                     <script>
-                                                        function printAllVals(o) {
+                                                        function onButtonClick(id1, id2){
+                                                          document.getElementById(id1).className="show";
+                                                          document.getElementById(id2).className="show";
+                                                        }
+                                                        function printAllVals(o,post,contents) {
+                                                            console.log(o,post,contents,"@@@@@@@@@@@@@@@@@@@@@@@");
                                                             var s = '</ol>';
                                                             for (let a in o) {
                                                                 if (typeof o[a] === "object") {
-                                                                    s='<li class="dd-item"><button data-action="collapse" type="button" style="display: block;">Collapse</button><button data-action="expand" type="button" style="display: none;">Expand</button><div class="dd-handle"></div>'+printAllVals(o[a])+'</li>'+s;
+                                                                    s='<li class="dd-item"><button data-action="collapse" type="button" style="display: block;">Collapse</button><button data-action="expand" type="button" style="display: none;">Expand</button><div class="dd-handle"></div>'+printAllVals(o[a], post, contents)+'</li>'+s;
                                                                 } else {
-                                                                  s='<li class="dd-item"><div class="dd-handle">'+a+o[a]+'</div></li>'+s;
+                                                                  s='<li class="dd-item"><div class="dd-handle">'+contents[post][o[a]]+'</div><input type="button" value="Reply" onclick="onButtonClick(\'textInput'+o[a]+'\',\'submitButton'+o[a]+'\')" /><form action="/add_comment/{{post.post_id}}/'+o[a]+'"><input class="hide" type="text" name=\'textInput'+o[a]+'\' id=\'textInput'+o[a]+'\'/><button type="submit" id=\'submitButton'+o[a]+'\' class="hide">Submit</button></form></li>'+s;
                                                                 }
                                                             }
                                                             console.log("*************"+s);
                                                             s='<ol class="dd-list" style="">'+s;
                                                           return s;
                                                         }
+
+                                                        function addComments(data,contents){
+
+                                                            for (let post in data) {
+                                                            console.log(post,contents, "########################");
+                                                                var html = printAllVals(data[post],post,contents);
+                                                                console.log(html);
+                                                                document.getElementById("comments_"+post).innerHTML = html;
+                                                            }
+                                                        }
+
+                                                        var contents = JSON.parse('{{ contents | tojson | safe}}');
                                                         var data = JSON.parse('{{ data | tojson | safe}}');
                                                         console.log(data);
-                                                        var html = printAllVals(data,0);
-                                                        console.log(html);
-                                                        document.getElementById("demo").innerHTML = html;
+                                                        console.log(contents, "++++++++++++++++=");
+                                                        addComments(data,contents);
                                                     </script>
                                                 </div>
 
@@ -556,7 +589,7 @@
                                         {% endfor %}
 
                                     </div>
-                                    <div role="tabpanel" class="tab-pane fade in" id="profile_settings">
+                                    <div role="tabpanel" class="tab-pane fade in" id="add_post">
                                         <form class="form-horizontal" action="/dashboard" method="post" enctype="multipart/form-data">
                                             <!-- Normal Fields -->
                                             <div class="form-group">
